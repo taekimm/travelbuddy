@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Travels Home</title>
+</head>
+<body>
+	<h2>Hello {{user.name|title}}!</h2>
+	<a href="/logout">Logout</a>
+
+	<p>Your Trip Schedules</p>
+	{% if usertravelplans %}
+	<table>
+		<tr>
+			<th>Destination</th>
+			<th>Travel Start Date</th>
+			<th>Travel End Date</th>
+			<th>Plan</th>
+		</tr>
+	{% for travelplan in usertravelplans %}
+		<tr>
+			<th><a href="destination/{{travelplan.id}}">{{travelplan.destination}}</a></th>
+			<th>{{travelplan.startdate}}</th>
+			<th>{{travelplan.enddate}}</th>
+			<th>{{travelplan.plan}}</th>
+		</tr>
+	{% endfor %}
+	</table>
+	{% else %}
+		<p>No Trips planned. <a href="/add">Start planning your trip!</a></p>
+	{% endif %}
+
+	<p>Other User's Travel Plans</p>
+
+	{% if otherstravelplans %}
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Destination</th>
+			<th>Travel Start Date</th>
+			<th>Travel End Date</th>
+			<th>Do You Want to Join?</th>
+		</tr>
+	{% for travelplan in otherstravelplans %}
+		<tr>
+			<th>{{travelplan.planner.name}}</th>
+			<th><a href="destination/{{travelplan.id}}">{{travelplan.destination}}</a></th>
+			<th>{{travelplan.startdate}}</th>
+			<th>{{travelplan.enddate}}</th>
+			<th>{{travelplan.plan}}</th>
+			<th><a href="join/{{travelplan.id}}">Join</a></th>
+		</tr>
+	{% endfor %}
+	</table>
+	{% endif %}
+	
+	<a href="/add">Add Travel Plan</a>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Plan</title>
+</head>
+<body>
+
+	<fieldset>
+		<legend>Add a Trip</legend>
+		<form action='/add_plan' method='post'>
+			{% csrf_token %}
+			Destination:<input type="text" name="destination"><br/>
+			Description:<input type="text" name="plan"><br/>
+			Travel Date From:<input type="date" name="startdate"><br/>
+			Travel Date To:<input type="date" name="enddate"><br/>
+			<input type="hidden" name="userid" value="{{request.session.userid}}">
+			<input type="submit" name="Add">
+		</form>
+	</fieldset>
+
+	{% if messages %}
+	<ul>
+		{% for message in messages %}
+		<li>{{message}}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+
+</body>
+</html>

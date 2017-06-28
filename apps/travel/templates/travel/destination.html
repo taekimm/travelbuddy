@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Destination</title>
+</head>
+<body>
+	<a href="/travels">Home</a>
+	<a href="/logout">Logout</a>
+
+	<h2>{{travelplan.destination}}</h2>
+	<p>Planned By: {{travelplan.planner.name}}</p>
+	<p>Travel Date From: {{travelplan.startdate}}</p>
+	<p>Travel Date To: {{travelplan.enddate}}</p>
+
+	<h2>Other Users' Joining the Trip:</h2>
+	{% if others %}
+		{% for other in others %}
+			<p>{{other.name|title}}</p>
+		{% endfor %}
+	{% endif %}
+</body>
+</html>
